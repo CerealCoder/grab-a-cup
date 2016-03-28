@@ -1,0 +1,48 @@
+// Import Bourbon, Neat, Smoothie etc ...
+@import 'vendor/index'
+
+// Import Variables, Mixins and Placeholders
+@import 'tools/index'
+
+// Import Base Styles (Resets and stuff)
+@import 'base/index'
+
+// Import Layout Styles
+@import 'layout/index'
+
+// Import Modules (forms, buttons ...)
+@import 'modules/index'
+
+// Import section / pages  styles
+@import 'sections/index'
+
+body
+
+
+main
+    background-color: #FCE38A
+    height: 100vh
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+.app__users
+    display: flex
+    flex-wrap: wrap
+    padding: 2em
+    justify-content: flex-start
+
+.users__user
+    flex-basis: 25%
+    margin-bottom: 2em
+
+.user-info
+
+    h2
+        color: #F38181
+        margin-bottom: .5em
+
+    li
+        font-size: 1.1em
+        margin-bottom: 0.4em
