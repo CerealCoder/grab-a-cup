@@ -34,6 +34,24 @@
 
         <script type="text/javascript">
 
+            var clientId = "CZ5CAAJEQ2LT5A5VDUCGVJ4TJNHMC50Y01GDZL240AAZIOO4"
+            var clientSecret = "RYD442GSBXBZOUUWVETX5ZZXJMDELCIUF10C52R4G145JTQL"
+            var date = 20160412
+
+            var url = "https://api.foursquare.com/v2/venues/categories?client_id=CZ5CAAJEQ2LT5A5VDUCGVJ4TJNHMC50Y01GDZL240AAZIOO4&client_secret=RYD442GSBXBZOUUWVETX5ZZXJMDELCIUF10C52R4G145JTQL&v=20161123&locale=en"
+
+            var xhr = new XMLHttpRequest()
+
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4 && xhr.status == 200){
+                    var some = JSON.parse(xhr.responseText);
+                    console.log(some.response.categories)
+                }
+            }
+
+            xhr.open('GET', url, true);
+            xhr.send();
+
         </script>
 
 
