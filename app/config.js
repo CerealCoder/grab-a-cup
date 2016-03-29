@@ -6,7 +6,6 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
         })
         .when('/map', {
             templateUrl : '/app/views/map.html',
-            controller : 'mapCtrl'
         })
         .otherwise({
             redirectTo: '/'

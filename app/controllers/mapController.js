@@ -1,10 +1,25 @@
-var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', function($scope, venuesService) {
+var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastInfo', function($scope, venuesService, forecastInfo) {
+
+    // get the weather
+    // get the coordinates
+
+    forecastInfo.getWeather("London")
+        .then(function(response) {
+            console.log(response.data)
+        }, function(error) {
+            console.log(error)
+        })
 
     venuesService.getVenues().then( function(response) {
-        console.log(response.data.response.venues)
+        $scope.venues = response.data.response.venues
+        console.log($scope.venues)
     }, function (error) {
-        console.log('There was an error, the server responsed with a status of ' + resp.status)
+        $scope.errorMsg = 'There was an error, the server responsed with a status of ' + response.status
     })
+
+    // store the venues
+    // create the markers
+    // style the map
 
     var mapOptions = {
         center: new google.maps.LatLng(50.825022, -0.137915),
@@ -12,9 +27,8 @@ var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', function($
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
 
-    var theMap = document.getElementById('map')
+    var theMap      = document.getElementById('map')
 
-    $scope.message = "zeiohfoezhfehz"
-    $scope.map     = new google.maps.Map(theMap, mapOptions)
+    $scope.map      = new google.maps.Map(theMap, mapOptions)
 
 }])
