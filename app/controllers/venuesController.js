@@ -2,10 +2,12 @@ var venuesCtrl = myApp.controller('venuesCtrl', ['$scope', 'venuesService', func
 
     $scope.users;
 
-    // venuesService.getUsers().then(function(resp) {
-    //     $scope.users = resp.data
-    // }, function(error) {
-    //     $scope.errorMessage = 'There was an error, the server responsed with a status of ' + resp.status
-    // })
+    venuesService.getVenues().then( function(response) {
+
+        console.log(response.data.response.venues)
+
+    }, function (error) {
+        console.log('There was an error, the server responsed with a status of ' + resp.status)
+    })
 
 }])

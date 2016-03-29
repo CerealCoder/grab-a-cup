@@ -17,7 +17,7 @@ var venuesService = myApp.service('venuesService', ['$http', function($http) {
 
     var endpoint = "https://api.foursquare.com/v2/venues/search?ll=" + queryParams.latlng + "&query=coffee&radius=" + queryParams.radius + "&limit=" + queryParams.limit + "&categoryId=" + queryParams.categoryId + "&client_id=" + queryParams.clientId + "&client_secret=" + queryParams.clientSecret + "&v=" + queryParams.apiVersion + "&locale=en"
 
-    venuesService.getVenues = function() {
+    venuesService.getVenues = function(lat,lng) {
         return $http.get(endpoint)
     }
 
