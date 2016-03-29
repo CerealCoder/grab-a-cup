@@ -1,4 +1,10 @@
-var mapCtrl = myApp.controller('mapCtrl', ['$scope', function($scope) {
+var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', function($scope, venuesService) {
+
+    venuesService.getVenues().then( function(response) {
+        console.log(response.data.response.venues)
+    }, function (error) {
+        console.log('There was an error, the server responsed with a status of ' + resp.status)
+    })
 
     var mapOptions = {
         center: new google.maps.LatLng(50.825022, -0.137915),
@@ -6,10 +12,9 @@ var mapCtrl = myApp.controller('mapCtrl', ['$scope', function($scope) {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
 
-    var mapElement = document.getElementById('map')
+    var theMap = document.getElementById('map')
 
     $scope.message = "zeiohfoezhfehz"
-    $scope.map     = new google.maps.Map(mapElement, mapOptions)
-
+    $scope.map     = new google.maps.Map(theMap, mapOptions)
 
 }])
