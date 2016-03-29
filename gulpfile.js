@@ -1,10 +1,11 @@
-var gulp = require('gulp');
+var gulp        = require('gulp');
 var browserSync = require('browser-sync');
-var sass = require('gulp-ruby-sass');
-var prefix = require('gulp-autoprefixer');
-var imagemin = require('gulp-imagemin');
-var uglify = require('gulp-uglify');
-var reload = browserSync.reload;
+var sass        = require('gulp-ruby-sass');
+var prefix      = require('gulp-autoprefixer');
+var imagemin    = require('gulp-imagemin');
+var uglify      = require('gulp-uglify');
+var history     = require('connect-history-api-fallback')
+var reload      = browserSync.reload;
 
 
 gulp.task('browser-sync', function(){
@@ -22,7 +23,8 @@ gulp.task('browser-sync', function(){
    browserSync(files, {
 
       server: './',
-      notify: true
+      notify: true,
+      middleware: [ history() ]
 
    });
 
