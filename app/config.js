@@ -3,7 +3,14 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
     $routeProvider
         .when('/', {
             templateUrl : '/app/views/hello.html',
-            controller : 'mainCtrl'
+            controller : 'venuesCtrl'
+        })
+        .when('/hello', {
+            templateUrl : '/app/views/hello-two.html',
+            controller : 'venuesCtrl'
+        })
+        .otherwise({
+            redirectTo: '/'
         })
 
 
