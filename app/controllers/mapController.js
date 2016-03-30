@@ -8,11 +8,15 @@ var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastI
 
             .then(function(response) {
 
+                console.log(response.data)
+
+                $scope.cityName         = response.data.name
                 $scope.weatherInfo      = response.data.weather[0]
                 $scope.temperatureInfo  = response.data.main
 
                 var coords              = response.data.coord
                 return coords
+
 
             })
 
