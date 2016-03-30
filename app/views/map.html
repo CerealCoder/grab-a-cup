@@ -1,7 +1,14 @@
 <section id="map" ng-controller="mapCtrl">
-
-    <aside id="weatherInfo">
-
-    </aside>
-
 </section>
+
+<aside id="weatherInfo">
+
+    <form ng-submit='doAjaxStuff()'>
+
+        <input type="text" ng-model="city">
+        <button type="submit">send bro</button>
+
+
+    </form>
+
+</aside>

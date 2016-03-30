@@ -1,34 +1,83 @@
 var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastInfo', function($scope, venuesService, forecastInfo) {
 
-    // get the weather
-    // get the coordinates
+    $scope.doAjaxStuff  = function() {
 
-    forecastInfo.getWeather("London")
-        .then(function(response) {
-            console.log(response.data)
-        }, function(error) {
-            console.log(error)
-        })
+        var city        = $scope.city
 
-    venuesService.getVenues().then( function(response) {
-        $scope.venues = response.data.response.venues
-        console.log($scope.venues)
-    }, function (error) {
-        $scope.errorMsg = 'There was an error, the server responsed with a status of ' + response.status
-    })
+        forecastInfo.getWeather(city)
 
-    // store the venues
-    // create the markers
-    // style the map
+            .then(function(response) {
 
-    var mapOptions = {
-        center: new google.maps.LatLng(50.825022, -0.137915),
-        zoom: 8,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+                $scope.weatherInfo      = response.data.weather[0]
+                $scope.temperatureInfo  = response.data.main
+
+                var coords              = response.data.coord
+                return coords
+
+            })
+
+            .then(function(coords) {
+
+                var lat = coords.lat
+                var lng = coords.lon
+
+                venuesService.getVenues(lat, lng)
+
+                    .then(function(response) {
+
+                        var venuesInfo = []
+
+                        $scope.venues = response.data.response.venues
+
+                        $scope.venues.forEach(function(venue, index) {
+
+                            setTimeout(function() {
+
+                                venuesInfo.push({
+
+                                    lat: venue.location.lat,
+                                    lng: venue.location.lng,
+                                    name: venue.name
+
+                                })
+
+                            }, index * 200)
+
+                        })
+
+                        var mapOptions  = {
+                            center: new google.maps.LatLng(lat, lng),
+                            zoom: 15,
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                        }
+
+                        var mapSection  = document.getElementById('map')
+
+                        $scope.map      = new google.maps.Map(mapSection, mapOptions)
+
+                        venuesInfo.forEach(function (venue) {
+
+                            var markerLatLng    = new google.maps.LatLng(venue.lat, venue.lng)
+
+                            var newMarker       = new google.maps.Marker({
+
+                                position: markerLatLng,
+                                map: $scope.map,
+                                title: marker.name
+                            })
+
+                        })
+
+                    })
+
+            })
+
+        $scope.clearForm()
+
     }
 
-    var theMap      = document.getElementById('map')
-
-    $scope.map      = new google.maps.Map(theMap, mapOptions)
+    $scope.clearForm = function() {
+        $scope.city = ''
+    }
 
 }])
