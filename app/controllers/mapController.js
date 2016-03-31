@@ -1,59 +1,44 @@
 var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastInfo', function($scope, venuesService, forecastInfo) {
 
-    $scope.doAjaxStuff  = function() {
+    var city = forecastInfo.city
 
-        var city        = $scope.city
-
-        // 1. Get the weather info and extract the coordinates of the desired location
-        // 2. Create scope variables for the temperature and city name
-        // 3. Return the coordinates and pass them on to the second then call
-        // 4. Use the coordinates to make a call to the foursquare API and return a list of 10 coffee shops in a 1.5km radius
-        // 5. Loop through the venues and get their latitude and longitude and push the infos into an array
-        // 6. Use the coordinates of the city to define the center of the google map
-        // 7. Instantiaite the map
-        // 7. Loop through the markers array to create a marker for each venue and place it on the map
-
-        forecastInfo.getWeather(city)
-
-            .then(function(response) {
-
-                $scope.cityName         = response.data.name
-                $scope.weatherInfo      = response.data.weather[0]
-                $scope.temperatureInfo  = response.data.main
-
-                var coords              = response.data.coord
-                return coords
-
-            })
-
-            .then(function(coords) {
-
-                var lat = coords.lat
-                var lng = coords.lon
-
-                venuesService.getVenues(lat, lng)
-
-                    .then(function(response) {
-
-                        var nearbyCoffeeShops = response.data.response.venues
-
-                        var nearbyCoffeeShopsInfo = $scope.extractCoffeeShopsInfo(nearbyCoffeeShops)
-
-                        $scope.initMap(lat, lng)
-
-                        $scope.createMarkersForCoffeeShops(nearbyCoffeeShopsInfo)
-
-                    })
-
-            })
-
-        $scope.clearForm()
-
+    if (!city) {
+        city = "Lyon"
     }
 
-    $scope.clearForm = function() {
-        $scope.city = ''
-    }
+    forecastInfo.getWeather(city)
+
+        .then(function(response) {
+
+            $scope.cityName         = response.data.name
+            $scope.weatherInfo      = response.data.weather[0]
+            $scope.temperatureInfo  = response.data.main
+
+            var coords              = response.data.coord
+            return coords
+
+        })
+
+        .then(function(coords) {
+
+            var lat = coords.lat
+            var lng = coords.lon
+
+            venuesService.getVenues(lat, lng)
+
+                .then(function(response) {
+
+                    var nearbyCoffeeShops = response.data.response.venues
+
+                    var nearbyCoffeeShopsInfo = $scope.extractCoffeeShopsInfo(nearbyCoffeeShops)
+
+                    $scope.initMap(lat, lng)
+
+                    $scope.createMarkersForCoffeeShops(nearbyCoffeeShopsInfo)
+
+                })
+
+        })
 
     $scope.initMap = function(lat, lng) {
 

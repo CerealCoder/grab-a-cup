@@ -1,7 +1,15 @@
-var mainCtrl = myApp.controller('mainCtrl', ['$scope', function ($scope) {
+var mainCtrl = myApp.controller('mainCtrl', ['$scope', 'forecastInfo', '$location', function ($scope, forecastInfo, $location) {
 
     // get the value of ng-model
-    // set it as a property of the forecastService object
-    // pass it to the call
+    $scope.setCity = function() {
+        forecastInfo.city = $scope.city
+        $location.path('/map')
+
+        $scope.clearForm()
+    }
+
+    $scope.clearForm = function() {
+        $scope.city = ''
+    }
 
 }])
