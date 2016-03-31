@@ -3,7 +3,7 @@ var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastI
     var city = forecastInfo.city
 
     if (!city) {
-        city = "Lyon"
+        city = "Tokyo"
     }
 
     forecastInfo.getWeather(city)
