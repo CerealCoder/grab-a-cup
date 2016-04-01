@@ -1,40 +1,35 @@
-var mainCtrl = myApp.controller('mainCtrl', ['$scope', 'forecastInfo', '$location', '$http',function ($scope, forecastInfo, $location, $http) {
+var mainCtrl = myApp.controller('mainCtrl', ['$scope', 'forecastInfo', 'locationInfo', '$location', function ($scope, forecastInfo, locationInfo, $location) {
 
     // get the value of ng-model
     $scope.setCity   = function() {
-        forecastInfo.city = $scope.city
-        $location.path('/map')
 
+        locationInfo.getLatLngFromCity($scope.city)
+            .then(function(response) {
+
+                var result          = response.data.results[0]
+                var locationData    = result.geometry.location
+
+                var locationName    = result.formatted_address
+                var latitude        = locationData.lat
+                var longitude       = locationData.lng
+
+                locationInfo.cityName   = locationName
+                locationInfo.coords     = {
+                    lat: latitude,
+                    lng: longitude,
+                    LatLng: latitude + ',' + longitude
+                }
+
+            }, function (err) {
+                console.log(err)
+            })
+
+        $location.path('/map')
         $scope.clearForm()
     }
 
     $scope.clearForm = function() {
         $scope.city = ''
-    }
-
-    $scope.getCoords = function(position) {
-
-        var lat = position.coords.latitude
-        var lng = position.coords.longitude
-        var coords = lat + ',' + lng
-        console.log(coords)
-    }
-
-    $scope.getPos    = function() {
-
-        navigator.geolocation.getCurrentPosition($scope.getCoords)
-
-    }
-
-    $scope.geoCode   = function() {
-
-        var city = $scope.city
-
-        $http.get('https://maps.googleapis.com/maps/api/geocode/json?address='+ city +'&key=AIzaSyAE5RY82oagtBboJyPfz_YKDpayrVRVcdc&language=en').then(function(response) {
-            console.log(response.data)
-        }, function(error) {
-            console.log(error)
-        })
     }
 
 }])

@@ -1,30 +1,15 @@
-var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastInfo', function($scope, venuesService, forecastInfo) {
+var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastInfo', 'locationInfo', function($scope, venuesService, forecastInfo, locationInfo) {
 
-    var city = forecastInfo.city
-
-    if (!city) {
-        city = "Tokyo"
-    }
-
-    forecastInfo.getWeather(city)
+    forecastInfo.getWeather(locationInfo.coords.lat, locationInfo.coords.lng)
 
         .then(function(response) {
-
-            $scope.cityName         = response.data.name
-            $scope.weatherInfo      = response.data.weather[0]
-            $scope.temperatureInfo  = response.data.main
-
-            var coords              = response.data.coord
-            return coords
-
+            $scope.temperatureInfo     = response.data.main
+            $scope.cityName            = response.data.name
         })
 
-        .then(function(coords) {
+        .then(function() {
 
-            var lat = coords.lat
-            var lng = coords.lon
-
-            venuesService.getVenues(lat, lng)
+            venuesService.getVenues(locationInfo.coords.lat, locationInfo.coords.lng)
 
                 .then(function(response) {
 
@@ -32,13 +17,12 @@ var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastI
 
                     var nearbyCoffeeShopsInfo = $scope.extractCoffeeShopsInfo(nearbyCoffeeShops)
 
-                    $scope.initMap(lat, lng)
+                    $scope.initMap(locationInfo.coords.lat, locationInfo.coords.lng)
 
                     $scope.createMarkersForCoffeeShops(nearbyCoffeeShopsInfo)
 
                 })
-
-        })
+    })
 
     $scope.initMap = function(lat, lng) {
 
