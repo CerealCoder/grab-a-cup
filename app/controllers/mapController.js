@@ -1,6 +1,12 @@
 var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastInfo', 'locationInfo', function($scope, venuesService, forecastInfo, locationInfo) {
 
-    forecastInfo.getWeather(locationInfo.coords.lat, locationInfo.coords.lng)
+    var latitude        = locationInfo.coords.lat
+    var longitude       = locationInfo.coords.lng
+    var searchRadius    = venuesService.searchRadius
+    var resultsLimit    = venuesService.resultsLimit
+
+
+    forecastInfo.getWeather(latitude, longitude)
 
         .then(function(response) {
             $scope.temperatureInfo     = response.data.main
@@ -9,7 +15,7 @@ var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastI
 
         .then(function() {
 
-            venuesService.getVenues(locationInfo.coords.lat, locationInfo.coords.lng)
+            venuesService.getVenues(latitude, longitude, searchRadius, resultsLimit)
 
                 .then(function(response) {
 
@@ -19,7 +25,7 @@ var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastI
 
                     console.log(nearbyCoffeeShopsInfo)
 
-                    $scope.initMap(locationInfo.coords.lat, locationInfo.coords.lng)
+                    $scope.initMap(latitude, longitude)
 
                     $scope.createMarkersForCoffeeShops(nearbyCoffeeShopsInfo)
 

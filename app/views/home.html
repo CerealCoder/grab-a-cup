@@ -1,11 +1,34 @@
-<h1>{{ greetingMessage }}</h1>
+<section class="home-splash">
 
-<section>
+    <div class="home-splash__about">
+        <h1>Grab A Cup</h1>
+        <p>
+            Have a meeting, want to catch up with friends or just fancy a good cappucino ? Find the nearest coffee shops in your area ! We even give you weather information, because we're nice like that.
+        </p>
+    </div>
 
-    <form ng-submit="setCity()">
+    <form class="home-splash__search" ng-submit="getFormInformation()">
 
-        <input type="text" ng-model="city">
-        <button type="submit">Save</button>
+        <div class="form-group">
+            <label for="city">Where are you ?</label>
+            <input type="text" name="city" ng-model="city" placeholder="Brighton, UK - Leicester Square, London - Brooklyn, NY ...">
+        </div>
+
+        <div class="form-group split">
+
+            <div>
+                <label for="radius">Radius</label>
+                <input type="text" name="radius" ng-model="searchRadius" placeholder="In metres">
+            </div>
+
+            <div>
+                <label for="radius">Limit (Max: 50)</label>
+                <input type="text" name="radius" ng-model="resultsLimit" placeholder="How many coffee shops to you want to show ?">
+            </div>
+
+        </div>
+
+        <button type="submit">Start !</button>
 
     </form>
 

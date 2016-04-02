@@ -1,7 +1,7 @@
-var mainCtrl = myApp.controller('mainCtrl', ['$scope', 'forecastInfo', 'locationInfo', '$location', function ($scope, forecastInfo, locationInfo, $location) {
+var mainCtrl = myApp.controller('mainCtrl', ['$scope', 'locationInfo', '$location', 'venuesService', function ($scope, locationInfo, $location, venuesService) {
 
     // get the value of ng-model
-    $scope.setCity   = function() {
+    $scope.getFormInformation   = function() {
 
         locationInfo.getLatLngFromCity($scope.city)
             .then(function(response) {
@@ -23,13 +23,20 @@ var mainCtrl = myApp.controller('mainCtrl', ['$scope', 'forecastInfo', 'location
             }, function (err) {
                 console.log(err)
             })
-
-        $location.path('/map')
+        $scope.setRadiusAndLimit()
         $scope.clearForm()
+        $location.path('/map')
+    }
+
+    $scope.setRadiusAndLimit = function() {
+        venuesService.searchRadius = $scope.searchRadius
+        venuesService.resultsLimit  = $scope.resultsLimit
     }
 
     $scope.clearForm = function() {
         $scope.city = ''
+        $scope.radius = ''
+        $scope.limit = ''
     }
 
 }])
