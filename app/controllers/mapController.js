@@ -17,6 +17,8 @@ var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastI
 
                     var nearbyCoffeeShopsInfo = $scope.extractCoffeeShopsInfo(nearbyCoffeeShops)
 
+                    console.log(nearbyCoffeeShopsInfo)
+
                     $scope.initMap(locationInfo.coords.lat, locationInfo.coords.lng)
 
                     $scope.createMarkersForCoffeeShops(nearbyCoffeeShopsInfo)
@@ -315,22 +317,54 @@ var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastI
 
     $scope.createMarkersForCoffeeShops = function functionName(coffeeShopsInfoArray) {
 
+        var infoWindow = null
+
         coffeeShopsInfoArray.forEach(function (coffeeShop, index) {
 
             var markerLatLng    = new google.maps.LatLng(coffeeShop.lat, coffeeShop.lng)
-            var iconBase        = "/app/static/img/"
+            var marker       = new google.maps.Marker({
+
+                position: markerLatLng,
+                map: $scope.map,
+                title: coffeeShop.name,
+                animation: google.maps.Animation.DROP,
+                icon: '/app/static/img/location2.svg'
+
+            })
+
+            marker.addListener('click', function() {
+
+                if (infoWindow) {
+                    infoWindow.close()
+                }
+
+                infoWindow = new google.maps.InfoWindow()
+                infoWindow.setContent(
+
+                    "<div class='venue-info'>" +
+
+                        "<div class='venue-info__name'>" +
+                            "<h1>" + coffeeShop.name + "</h1>" +
+                        "</div>" +
+
+                        "<address class='venue-info__location'>" +
+
+                            "<ul>" +
+                                "<li>" + coffeeShop.address  + "</li>" +
+                                "<li>" + coffeeShop.postcode + "</li>" +
+                                "<li>" + coffeeShop.phone    + "</li>" +
+                                "<li>" + coffeeShop.twitter  + "</li>" +
+                            "</ul>" +
+
+                        "</address>" +
 
 
-            setTimeout(function() {
-                var newMarker       = new google.maps.Marker({
+                    "</div>"
+                )
 
-                    position: markerLatLng,
-                    map: $scope.map,
-                    title: coffeeShop.name,
-                    animation: google.maps.Animation.DROP,
-                    icon: iconBase + 'location2.svg'
-                })
-            }, index * 250)
+                infoWindow.open($scope.map, marker)
+                $scope.map.setCenter(infoWindow.getPosition())
+            })
 
         })
     }
@@ -345,7 +379,11 @@ var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastI
 
                 lat: coffeeShop.location.lat,
                 lng: coffeeShop.location.lng,
-                name: coffeeShop.name
+                name: coffeeShop.name,
+                phone: coffeeShop.contact.formattedPhone,
+                twitter: coffeeShop.contact.twitter,
+                postcode: coffeeShop.location.postalCode,
+                address: coffeeShop.location.address
 
             })
 
