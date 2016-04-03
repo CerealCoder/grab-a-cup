@@ -53,6 +53,12 @@
         width: 100%
         padding: 1em 1.1em
         color: $primary
+        box-shadow: none
+        transition: all .12s ease
+
+        &:focus
+            outline: $tertiary
+            box-shadow: 0 0 11px $tertiary
 
 .home-splash__search .form-group.split
     display: flex
