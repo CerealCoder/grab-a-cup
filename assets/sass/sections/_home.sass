@@ -54,6 +54,7 @@
         padding: 1em 1.1em
         color: $primary
         box-shadow: none
+        border-radius: 3px
         transition: all .12s ease
 
         &:focus
@@ -74,9 +75,38 @@
     display: block
     background-color: $tertiary
     margin: 0 auto
-    padding: 1em 1.2em
-    font-size: 1.1em
+    padding: 1.2em
     margin-top: 2em
-    color: $secondary
-    font-weight: 600
-    text-transform: capitalize
+    position: relative
+    font-size: 1.1em
+    overflow: hidden
+    border-radius: 3px
+    transition: all .23s ease
+
+    &:hover
+        background-color: darken($tertiary, 5%)
+
+        span
+            transform: translateY(-100px)
+
+        svg
+            transform: translate(-50%, -50%)
+
+    span, svg
+        transition: all .23s ease
+
+    span
+        color: $secondary
+        font-weight: 600
+        text-transform: capitalize
+        display: block
+
+    svg
+        +size(50px)
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, 100px)
+
+        path
+            fill: $secondary
