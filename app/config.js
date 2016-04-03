@@ -3,7 +3,7 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
     $routeProvider
         .when('/', {
             templateUrl : '/app/views/home.html',
-            controller: 'mainCtrl'
+            controller: 'homeCtrl'
         })
         .when('/map', {
             templateUrl : '/app/views/map.html',

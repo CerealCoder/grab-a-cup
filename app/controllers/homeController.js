@@ -1,4 +1,4 @@
-var mainCtrl = myApp.controller('mainCtrl', ['$scope', 'locationInfo', '$location', 'venuesService', function ($scope, locationInfo, $location, venuesService) {
+var homeCtrl = myApp.controller('homeCtrl', ['$scope', 'locationInfo', '$location', 'venuesService', function ($scope, locationInfo, $location, venuesService) {
 
     // get the value of ng-model
     $scope.getFormInformation   = function() {
