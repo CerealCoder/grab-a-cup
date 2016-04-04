@@ -4,3 +4,52 @@
     left: 0
     right: 0
     bottom: 0
+
+.map-page
+    height: inherit
+    display: flex
+
+.weather-info
+    text-align: center
+    width: 25%
+    display: flex
+    flex-direction: column
+
+.weather-info__logo
+    background-color: $tertiary
+    color: $secondary
+    padding: .5em 0
+    font-size: 2em
+
+
+.weather-info__temperatures
+    flex: 1
+    display: flex
+    flex-direction: column
+    background-color: $primary
+    color: $tertiary
+    padding: 7em 2em 0
+
+    h1
+        white-space: nowrap
+        width: 100%
+        overflow: hidden
+        text-overflow: ellipsis
+        margin-bottom: 2rem
+
+    ul li
+        margin-bottom: .7em
+        font-size: 1.3em
+        font-weight: 600
+
+        &:last-child
+            margin-bottom: 0
+
+
+.map
+    background-image: url('/app/static/img/coffebg.jpg')
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: cover
+    height: inherit
+    width: 100%

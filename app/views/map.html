@@ -1,1 +1,26 @@
-<section id="map"></section>
+<!-- <section id="map"></section> -->
+<section class="map-page">
+
+    <aside class="weather-info">
+
+        <div class="weather-info__logo">
+            <h3>Grab A Cup</h3>
+        </div>
+
+        <div class="weather-info__temperatures">
+            <h1>{{cityName}}</h1>
+            <ul>
+                <li>{{ temperatureInfo.temp }} °C</li>
+                <li>Min: {{ temperatureInfo.temp_min }} °C</li>
+                <li>Max: {{ temperatureInfo.temp_max }} °C</li>
+                <li>{{ temperatureInfo.weatherDescription}}</li>
+            </ul>
+        </div>
+
+    </aside>
+
+    <main id="map"></main>
+
+
+
+</section>
