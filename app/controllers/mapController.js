@@ -23,6 +23,12 @@ var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastI
 
                     var nearbyCoffeeShopsInfo = $scope.extractCoffeeShopsInfo(nearbyCoffeeShops)
 
+                    $scope.venueName  = nearbyCoffeeShopsInfo.name
+                    $scope.address    = nearbyCoffeeShopsInfo.address
+                    $scope.postcode   = nearbyCoffeeShopsInfo.postcode
+                    $scope.phone      = nearbyCoffeeShopsInfo.phone
+                    $scope.twitter    = nearbyCoffeeShopsInfo.twitter
+
                     $scope.initMap(latitude, longitude)
 
                     $scope.createMarkersForCoffeeShops(nearbyCoffeeShopsInfo)
@@ -88,10 +94,10 @@ var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastI
                         "<address class='venue-info__location'>" +
 
                             "<ul>" +
-                                "<li>" + coffeeShop.address  + "</li>" +
-                                "<li>" + coffeeShop.postcode + "</li>" +
-                                "<li>" + coffeeShop.phone    + "</li>" +
-                                "<li>" + coffeeShop.twitter  + "</li>" +
+                                "<li> Address: " + coffeeShop.address  + "</li>" +
+                                "<li> Postcode: " + coffeeShop.postcode + "</li>" +
+                                "<li> Phone: " + coffeeShop.phone    + "</li>" +
+                                "<li> Twitter: " + coffeeShop.twitter  + "</li>" +
                             "</ul>" +
 
                         "</address>" +

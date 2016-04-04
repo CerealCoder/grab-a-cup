@@ -1,13 +1,11 @@
-#map
-    position: absolute !important
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
-
 .map-page
     height: inherit
     display: flex
+
+#map
+    height: inherit
+    width: 75%
+    position: relative
 
 .weather-info
     text-align: center
@@ -20,7 +18,6 @@
     color: $secondary
     padding: .5em 0
     font-size: 2em
-
 
 .weather-info__temperatures
     flex: 1
@@ -45,11 +42,17 @@
         &:last-child
             margin-bottom: 0
 
+.venue-info__name
 
-.map
-    background-image: url('/app/static/img/coffebg.jpg')
-    background-repeat: no-repeat
-    background-position: center center
-    background-size: cover
-    height: inherit
-    width: 100%
+    h1
+        color: $primary !important
+
+.venue-info__location
+    margin-top: 1em
+
+    ul li
+        margin-bottom: .6em
+        font-size: 1.2em
+        font-style: normal
+        font-weight: bold
+        color: $tertiary
