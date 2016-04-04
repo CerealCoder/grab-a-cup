@@ -83,6 +83,7 @@ var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastI
                 }
 
                 infoWindow = new google.maps.InfoWindow()
+
                 infoWindow.setContent(
 
                     "<div class='venue-info'>" +
