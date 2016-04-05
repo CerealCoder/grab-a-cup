@@ -27,6 +27,12 @@ input
     outline: 0
     font-size: 16px // Prevent iOS from zooming in on form focus
 
+input[type="number"]
+    -moz-appearance: textfield
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button
+        appearance: none
 
 button
     background: none

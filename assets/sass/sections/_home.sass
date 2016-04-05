@@ -83,6 +83,10 @@
     border-radius: 3px
     transition: all .23s ease
 
+    &:disabled
+        background: grey
+        pointer-events: none
+
     &:hover
         background-color: darken($tertiary, 5%)
 
@@ -110,3 +114,19 @@
 
         path
             fill: $secondary
+
+.errors
+    position: absolute
+    bottom: 5em
+    left: 50%
+    z-index: 22
+    color: $tertiary
+    font-weight: 600
+    transform: translateX(-50%)
+
+    span
+        display: block
+        margin-bottom: .4em
+
+        &:last-child
+            margin-bottom: 0

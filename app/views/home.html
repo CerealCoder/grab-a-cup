@@ -10,28 +10,28 @@
             </p>
         </div>
 
-        <form class="home-splash__search" ng-submit="getFormInformation()">
+        <form class="home-splash__search" name="searchForm" ng-submit="getFormInformation()">
 
             <div class="form-group">
                 <label for="city">Where are you ?</label>
-                <input type="text" name="city" ng-model="city" placeholder="Brighton, UK - Leicester Square, London - Brooklyn, NY ...">
+                <input type="text" name="city" ng-model="city" placeholder="Brighton, UK - Leicester Square, London - Brooklyn, NY ..." required>
             </div>
 
             <div class="form-group split">
 
                 <div>
-                    <label for="radius">Radius</label>
-                    <input type="text" name="radius" ng-model="searchRadius" placeholder="In metres">
+                    <label for="radius">Radius (Max: 100000)</label>
+                    <input type="number" name="radius" ng-model="searchRadius" max="100000" ng-maxlength="6" min="0" placeholder="In metres" required>
                 </div>
 
                 <div>
                     <label for="radius">Limit (Max: 50)</label>
-                    <input type="text" name="radius" ng-model="resultsLimit" maxlength="2" placeholder="Number of venues to display">
+                    <input type="number" name="results" ng-model="resultsLimit" min="1" max="50" ng-maxlength="2" placeholder="Number of venues to display" required>
                 </div>
 
             </div>
 
-            <button type="submit" class="btn-submit">
+            <button type="submit" ng-disabled="searchForm.$invalid" class="btn-submit">
 
                 <span>Show me the coffee !</span>
 
@@ -45,6 +45,11 @@
 
         </form>
 
+    </div>
+
+    <div class="errors">
+        <span class="error" ng-show="searchForm.results.$error.maxlength || searchForm.results.$error.max">The maxixum number of venues cannot exceed 50, please enter a new value.</span>
+        <span class="error" ng-show="searchForm.radius.$error.maxlength || searchForm.radius.$error.max">The radius should not be greater than 100 000, please enter a new value.</span>
     </div>
 
 
