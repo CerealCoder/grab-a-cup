@@ -72,7 +72,7 @@ var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastI
                 map: $scope.map,
                 title: coffeeShop.name,
                 animation: google.maps.Animation.DROP,
-                icon: '/app/static/img/location2.svg'
+                icon: '/grab-a-cup/app/static/img/location2.svg'
 
             })
 
