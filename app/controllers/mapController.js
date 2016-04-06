@@ -1,4 +1,8 @@
-var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastInfo', 'locationInfo', function($scope, venuesService, forecastInfo, locationInfo) {
+var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastInfo', 'locationInfo', '$location' function($scope, venuesService, forecastInfo, locationInfo, $location) {
+
+    if (!locationInfo.coords) {
+        $location.path('/')
+    }
 
     var latitude        = locationInfo.coords.lat
     var longitude       = locationInfo.coords.lng
