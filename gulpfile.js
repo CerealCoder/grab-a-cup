@@ -12,8 +12,8 @@ gulp.task('browser-sync', function(){
 
    var files = [
 
-      'grab-a-cup/app/**/*.html',
-      'grab-a-cup/app/**/*.js',
+      'app/**/*.html',
+      'app/**/*.js',
       'assets/sass/**/*.sass',
       'assets/img/*',
       'index.html'
@@ -46,7 +46,7 @@ gulp.task('sass', function(){
     .pipe(prefix({
         browsers: ['last 2 versions', '> 5%']
     }))
-    .pipe(gulp.dest('/grab-a-cup/app/static/styles'))
+    .pipe(gulp.dest('app/static/styles'))
     .pipe(reload({stream: true}));
 
 });
@@ -56,7 +56,7 @@ gulp.task('imagemin', function(){
 
     gulp.src('assets/img/*')
         .pipe(imagemin())
-        .pipe(gulp.dest('/grab-a-cup/app/static/img'));
+        .pipe(gulp.dest('app/static/img'));
 
 });
 
