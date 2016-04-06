@@ -1,0 +1,132 @@
+.home-splash
+    background-image: url("../img/coffebg.jpg")
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: cover
+    position: relative
+    height: inherit
+    display: flex
+    align-items: center
+    justify-content: center
+
+    .wrapper
+        position: relative
+        width: 40em
+        z-index: 22
+
+    &:after
+        content: ""
+        position: absolute
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        display: block
+        background-color: fade-out($primary, .027)
+
+.home-splash__about
+    text-align: center
+    margin-bottom: 3em
+
+    h1
+        font-size: 3em
+        margin-bottom: 2rem
+        color: $tertiary
+
+    p
+        color: $secondary
+        font-size: 1.14em
+        font-weight: 600
+        line-height: 1.55
+
+.home-splash__search .form-group
+
+    margin-bottom: 1em
+
+    label
+        display: block
+        margin-bottom: .5em
+        color: $tertiary
+        font-weight: 600
+
+    input
+        width: 100%
+        padding: 1em 1.1em
+        color: $primary
+        box-shadow: none
+        border-radius: 3px
+        transition: all .12s ease
+
+        &:focus
+            outline: $tertiary
+            box-shadow: 0 0 11px $tertiary
+
+.home-splash__search .form-group.split
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+    div
+        width: 48%
+
+.home-splash__search .btn-submit
+
+    width: 220px
+    display: block
+    background-color: $tertiary
+    margin: 0 auto
+    padding: 1.2em
+    margin-top: 2em
+    position: relative
+    font-size: 1.1em
+    overflow: hidden
+    border-radius: 3px
+    transition: all .23s ease
+
+    &:disabled
+        background: grey
+        pointer-events: none
+
+    &:hover
+        background-color: darken($tertiary, 5%)
+
+        span
+            transform: translateY(-100px)
+
+        svg
+            transform: translate(-50%, -50%)
+
+    span, svg
+        transition: all .23s ease
+
+    span
+        color: $secondary
+        font-weight: 600
+        text-transform: capitalize
+        display: block
+
+    svg
+        +size(50px)
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, 100px)
+
+        path
+            fill: $secondary
+
+.errors
+    position: absolute
+    bottom: 5em
+    left: 50%
+    z-index: 22
+    color: $tertiary
+    font-weight: 600
+    transform: translateX(-50%)
+
+    span
+        display: block
+        margin-bottom: .4em
+
+        &:last-child
+            margin-bottom: 0

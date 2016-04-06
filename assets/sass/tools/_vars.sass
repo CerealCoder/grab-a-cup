@@ -1,0 +1,29 @@
+// Font Variables
+$font: 'Source Sans Pro', sans-serif
+$headings: 'Amaranth', sans-serif
+
+// Project Colors
+
+$primary: #231D1F
+$secondary: #FDFCFC
+$tertiary: #B8906B
+
+// Map for social colors
+
+$social: ( facebook: #3B539A, twitter: #00ACED, gplus: #F12F1C, linkedin: #007BB6, pinterest: #CB2027, youtube: #BB0000, instagram: #517FA4, github: #161414, vimeo: #1BB8EE, dribbble: #ea4c89, soundcloud: #FF6600 )
+
+// Loop through the map and create style for each class
+@each $name, $value in $social
+
+   .icon--#{$name}
+
+      svg path
+
+         fill: $value
+         transition: all .3s ease-in
+
+      &:hover
+
+         svg path
+
+            fill: darken($value, 4%)
