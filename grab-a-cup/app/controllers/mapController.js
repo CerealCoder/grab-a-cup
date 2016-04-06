@@ -1,4 +1,4 @@
-var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastInfo', 'locationInfo', '$location' function($scope, venuesService, forecastInfo, locationInfo, $location) {
+var mapCtrl = myApp.controller('mapCtrl', ['$scope', 'venuesService', 'forecastInfo', 'locationInfo', '$location', function($scope, venuesService, forecastInfo, locationInfo, $location) {
 
     if (!locationInfo.coords) {
         $location.path('/')
