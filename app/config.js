@@ -2,11 +2,11 @@ myApp.config(['$routeProvider', '$locationProvider', function($routeProvider, $l
 
     $routeProvider
         .when('/', {
-            templateUrl : '/app/views/home.html',
+            templateUrl : 'app/views/home.html',
             controller: 'homeCtrl'
         })
         .when('/map', {
-            templateUrl : '/app/views/map.html',
+            templateUrl : 'app/views/map.html',
             controller: 'mapCtrl'
         })
         .otherwise({
